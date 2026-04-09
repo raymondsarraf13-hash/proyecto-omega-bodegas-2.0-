@@ -71,7 +71,7 @@ body{
   .header-right{align-items:flex-start;justify-content:flex-start;gap:24px}
 }
 /* MAIN */
-.main-container{flex:1;padding:24px 32px;max-width:1440px;margin:0 auto;width:100%}
+.main-container{flex:1;padding:24px 32px;width:100%}
 /* CARDS */
 .card{background:var(--card-bg);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}
 .card-header{
@@ -340,7 +340,8 @@ table.data-table tbody td.positive{color:#28a745}
 
 <!-- SECTION: INPUTS -->
 <div class="section active" id="sectionInputs">
-  <div class="card fade-in" style="margin-bottom:24px">
+  <div style="display:grid;grid-template-columns:1fr 340px;gap:24px;align-items:start;margin-bottom:24px">
+  <div class="card fade-in">
     <div class="card-header">
       <svg viewBox="0 0 24 24"><path d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5" stroke-linecap="round"/><path d="M18 2l4 4-10 10H8v-4L18 2z"/></svg>
       Supuestos de Inversión
@@ -365,19 +366,19 @@ table.data-table tbody td.positive{color:#28a745}
         <div class="input-grid">
           <div class="input-group">
             <label>Nombre de la Bodega</label>
-            <input type="text" id="inNombre" value="Bodega Alpha" placeholder="Ej. Bodega Alpha">
+            <input type="text" id="inNombre" value="" placeholder="Ej. Bodega Alpha">
           </div>
           <div class="input-group">
-            <label>Horizonte de Inversión<span class="tooltip-icon" data-tip="Número de años del proyecto">?</span></label>
+            <label>Horizonte de Inversión<span class="tooltip-icon" data-tip="Número de años para calcular el Retorno de Inversión">?</span></label>
             <div class="input-wrap">
-              <input type="number" id="inHorizonte" value="10" min="1" max="50" step="1">
+              <input type="number" id="inHorizonte" value="" min="1" max="50" step="1" placeholder="10">
               <span class="sfx">Años</span>
             </div>
           </div>
           <div class="input-group">
             <label>Tasa de Descuento (WACC)<span class="tooltip-icon" data-tip="Para cálculo de VPN y DCF">?</span></label>
             <div class="sp-box">
-              <input type="number" id="inDescuento" value="10.0" step="0.5" min="0">
+              <input type="number" id="inDescuento" value="" step="0.5" min="0" placeholder="10.0">
               <button class="sp-btn" onclick="spin('inDescuento',-0.5)">&#9662;</button>
               <button class="sp-btn" onclick="spin('inDescuento',0.5)">&#9652;</button>
               <span class="sp-sfx">%</span>
@@ -394,17 +395,17 @@ table.data-table tbody td.positive{color:#28a745}
             <label>Valor de Inversión</label>
             <div class="input-wrap">
               <span class="pfx">$</span>
-              <input type="text" id="inInversion" value="50,000,000" oninput="formatCurrency(this)" placeholder="50,000,000">
+              <input type="text" id="inInversion" value="" oninput="formatCurrency(this)" placeholder="50,000,000">
               <span class="sfx">MXN</span>
             </div>
           </div>
           <div class="input-group">
             <label>Fecha de Inversión Inicial</label>
-            <input type="date" id="inFechaInv" value="2025-01-15" style="height:var(--input-h)">
+            <input type="date" id="inFechaInv" value="" style="height:var(--input-h)">
           </div>
           <div class="input-group" id="grpFechaRenta">
             <label>Fecha de Inicio de Renta</label>
-            <input type="date" id="inFechaOps" value="2025-07-01" style="height:var(--input-h)">
+            <input type="date" id="inFechaOps" value="" style="height:var(--input-h)">
           </div>
         </div>
       </div>
@@ -414,17 +415,17 @@ table.data-table tbody td.positive{color:#28a745}
         <div style="font-size:12px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:1px;margin-bottom:12px;padding-bottom:6px;border-bottom:2px solid var(--accent)">Propiedad</div>
         <div class="input-grid">
           <div class="input-group">
-            <label>m² Renta<span class="tooltip-icon" data-tip="Superficie rentable (GLA)">?</span></label>
+            <label>m² Renta<span class="tooltip-icon" data-tip="Superficie rentable">?</span></label>
             <div class="input-wrap">
-              <input type="text" id="inM2Renta" value="9,500" oninput="formatNumber(this)" placeholder="9,500">
+              <input type="text" id="inM2Renta" value="" oninput="formatNumber(this)" placeholder="9,500">
               <span class="sfx">m²</span>
             </div>
           </div>
           <div class="input-group">
-            <label>Ocupación</label>
+            <label>Ocupación<span class="tooltip-icon" data-tip="Dar click en Por Año para modificar la ocupación por año">?</span></label>
             <div style="display:flex;align-items:center;gap:8px">
               <div class="sp-box">
-                <input type="number" id="inOcupacion" value="95.0" step="1" min="0.1" max="100">
+                <input type="number" id="inOcupacion" value="" step="1" min="0.1" max="100" placeholder="95.0">
                 <button class="sp-btn" onclick="spin('inOcupacion',-1)">&#9662;</button>
                 <button class="sp-btn" onclick="spin('inOcupacion',1)">&#9652;</button>
                 <span class="sp-sfx">%</span>
@@ -446,14 +447,14 @@ table.data-table tbody td.positive{color:#28a745}
             <label>Precio Inicial de Renta</label>
             <div class="input-wrap">
               <span class="pfx">$</span>
-              <input type="text" id="inRenta" value="120.0" placeholder="120.0">
+              <input type="text" id="inRenta" value="" placeholder="120.0">
               <span class="sfx">MXN/m²/mes</span>
             </div>
           </div>
           <div class="input-group">
-            <label>Inflación Anual</label>
+            <label>Inflación Anual<span class="tooltip-icon" data-tip="Crecimiento anual del precio de renta inicial">?</span></label>
             <div class="sp-box">
-              <input type="number" id="inInflacion" value="4.5" step="0.5" min="0.1">
+              <input type="number" id="inInflacion" value="" step="0.5" min="0.1" placeholder="4.5">
               <button class="sp-btn" onclick="spin('inInflacion',-0.5)">&#9662;</button>
               <button class="sp-btn" onclick="spin('inInflacion',0.5)">&#9652;</button>
               <span class="sp-sfx">%</span>
@@ -462,7 +463,7 @@ table.data-table tbody td.positive{color:#28a745}
           <div class="input-group">
             <label>Opex + G&amp;A (% de Ingresos)</label>
             <div class="sp-box">
-              <input type="number" id="inOpex" value="15.0" step="0.5" min="0.1">
+              <input type="number" id="inOpex" value="" step="0.5" min="0.1" placeholder="15.0">
               <button class="sp-btn" onclick="spin('inOpex',-0.5)">&#9662;</button>
               <button class="sp-btn" onclick="spin('inOpex',0.5)">&#9652;</button>
               <span class="sp-sfx">%</span>
@@ -478,7 +479,7 @@ table.data-table tbody td.positive{color:#28a745}
           <div class="input-group" id="grpCapRate">
             <label>Cap Rate de Salida<span class="tooltip-icon" data-tip="Valor Venta = NOI Año Final ÷ Cap Rate">?</span></label>
             <div class="sp-box">
-              <input type="number" id="inCapRate" value="8.5" step="0.25" min="7.5" max="12">
+              <input type="number" id="inCapRate" value="" step="0.25" min="1" max="15" placeholder="8.5">
               <button class="sp-btn" onclick="spin('inCapRate',-0.25)">&#9662;</button>
               <button class="sp-btn" onclick="spin('inCapRate',0.25)">&#9652;</button>
               <span class="sp-sfx">%</span>
@@ -496,6 +497,54 @@ table.data-table tbody td.positive{color:#28a745}
       </div>
     </div>
   </div>
+
+  <!-- Referencias de Mercado -->
+  <div class="card fade-in" style="align-self:start">
+    <div class="card-header">
+      <svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 016.5 17H20" stroke-linecap="round"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+      Referencias de Mercado
+    </div>
+    <div class="card-body" style="padding:16px;font-size:11.5px;color:var(--text);line-height:1.7">
+      <p style="margin-bottom:12px;font-size:11px;color:var(--text-light)">A continuación se definen ciertos rangos comúnmente utilizados por inversionistas para valorar este tipo de inversiones:</p>
+
+      <div style="font-size:11px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:6px">Referencia de Tamaño</div>
+      <table style="width:100%;font-size:11px;margin-bottom:12px;border-collapse:collapse">
+        <tr><td style="padding:2px 0;color:var(--primary-dark);font-weight:600">Micro</td><td style="text-align:right">&lt; 1,000 m²</td></tr>
+        <tr><td style="padding:2px 0;color:var(--primary-dark);font-weight:600">Small-bay</td><td style="text-align:right">1,000 – 5,000 m²</td></tr>
+        <tr><td style="padding:2px 0;color:var(--primary-dark);font-weight:600">Mid-market</td><td style="text-align:right">5,000 – 20,000 m²</td></tr>
+        <tr><td style="padding:2px 0;color:var(--primary-dark);font-weight:600">Big-box</td><td style="text-align:right">20,000 – 50,000 m²</td></tr>
+        <tr><td style="padding:2px 0;color:var(--primary-dark);font-weight:600">Mega-box</td><td style="text-align:right">&gt; 50,000 m²</td></tr>
+      </table>
+
+      <div style="font-size:11px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:6px">Tasa de Descuento (WACC)</div>
+      <table style="width:100%;font-size:11px;margin-bottom:12px;border-collapse:collapse">
+        <tr><td style="padding:2px 0;color:var(--primary-dark);font-weight:600">Micro</td><td style="text-align:right">10.50% – 12.00%</td></tr>
+        <tr><td style="padding:2px 0;color:var(--primary-dark);font-weight:600">Small-bay</td><td style="text-align:right">10.00% – 11.25%</td></tr>
+        <tr><td style="padding:2px 0;color:var(--primary-dark);font-weight:600">Mid-market</td><td style="text-align:right">9.25% – 10.50%</td></tr>
+        <tr><td style="padding:2px 0;color:var(--primary-dark);font-weight:600">Big-box</td><td style="text-align:right">8.50% – 9.75%</td></tr>
+        <tr><td style="padding:2px 0;color:var(--primary-dark);font-weight:600">Mega-box</td><td style="text-align:right">8.25% – 9.50%</td></tr>
+      </table>
+
+      <div style="font-size:11px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:6px">Precios Iniciales de Renta</div>
+      <table style="width:100%;font-size:11px;margin-bottom:12px;border-collapse:collapse">
+        <tr><td style="padding:2px 0;color:var(--primary-dark);font-weight:600">Micro</td><td style="text-align:right">$148 – $200</td></tr>
+        <tr><td style="padding:2px 0;color:var(--primary-dark);font-weight:600">Small-bay</td><td style="text-align:right">$139 – $174</td></tr>
+        <tr><td style="padding:2px 0;color:var(--primary-dark);font-weight:600">Mid-market</td><td style="text-align:right">$122 – $143</td></tr>
+        <tr><td style="padding:2px 0;color:var(--primary-dark);font-weight:600">Big-box</td><td style="text-align:right">$115 – $136</td></tr>
+        <tr><td style="padding:2px 0;color:var(--primary-dark);font-weight:600">Mega-box</td><td style="text-align:right">$108 – $129</td></tr>
+      </table>
+
+      <div style="font-size:11px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:6px">Cap Rate de Salida</div>
+      <table style="width:100%;font-size:11px;margin-bottom:0;border-collapse:collapse">
+        <tr><td style="padding:2px 0;color:var(--primary-dark);font-weight:600">Micro</td><td style="text-align:right">8.75% – 10.25%</td></tr>
+        <tr><td style="padding:2px 0;color:var(--primary-dark);font-weight:600">Small-bay</td><td style="text-align:right">8.25% – 9.50%</td></tr>
+        <tr><td style="padding:2px 0;color:var(--primary-dark);font-weight:600">Mid-market</td><td style="text-align:right">7.75% – 8.75%</td></tr>
+        <tr><td style="padding:2px 0;color:var(--primary-dark);font-weight:600">Big-box</td><td style="text-align:right">7.00% – 8.00%</td></tr>
+        <tr><td style="padding:2px 0;color:var(--primary-dark);font-weight:600">Mega-box</td><td style="text-align:right">6.75% – 7.75%</td></tr>
+      </table>
+    </div>
+  </div>
+  </div><!-- /grid inputs + references -->
 </div>
 
 <!-- SECTION: RESULTS -->
@@ -747,20 +796,20 @@ function calcDCFExit(rentaInicial, inflacion, m2Renta, opexPct, wacc, capRate, e
 
 // ===== RESET =====
 function resetInputs() {
-  document.getElementById('inNombre').value = 'Bodega Alpha';
-  document.getElementById('inHorizonte').value = 10;
-  document.getElementById('inDescuento').value = 10.0;
-  document.getElementById('inInversion').value = '50,000,000';
-  document.getElementById('inFechaInv').value = '2025-01-15';
-  document.getElementById('inFechaOps').value = '2025-07-01';
-  document.getElementById('inM2Renta').value = '9,500';
-  document.getElementById('inOcupacion').value = 95.0;
+  document.getElementById('inNombre').value = '';
+  document.getElementById('inHorizonte').value = '';
+  document.getElementById('inDescuento').value = '';
+  document.getElementById('inInversion').value = '';
+  document.getElementById('inFechaInv').value = '';
+  document.getElementById('inFechaOps').value = '';
+  document.getElementById('inM2Renta').value = '';
+  document.getElementById('inOcupacion').value = '';
   document.getElementById('inOccMode').value = 'uniform';
   occByYear = {};
-  document.getElementById('inRenta').value = '120.0';
-  document.getElementById('inInflacion').value = 4.5;
-  document.getElementById('inOpex').value = 15.0;
-  document.getElementById('inCapRate').value = 8.5;
+  document.getElementById('inRenta').value = '';
+  document.getElementById('inInflacion').value = '';
+  document.getElementById('inOpex').value = '';
+  document.getElementById('inCapRate').value = '';
   document.getElementById('toggleOp').checked = false;
   updateToggle();
 }
@@ -1041,7 +1090,82 @@ function calculate() {
 
   html += `</div>`;
 
-  document.getElementById('resultsContent').innerHTML = html;
+  // Build Referencias de Interpretación panel
+  let refHtml = `
+  <div class="card" style="align-self:start;position:sticky;top:100px">
+    <div class="card-header">
+      <svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 016.5 17H20" stroke-linecap="round"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+      Referencias de Interpretación
+    </div>
+    <div class="card-body" style="padding:16px;font-size:11.5px;color:var(--text);line-height:1.8">
+
+      <div style="font-size:11px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:6px">VPN</div>
+      <div style="margin-bottom:10px">
+        <div style="display:flex;align-items:center;gap:6px;margin-bottom:2px">
+          <span style="color:#28a745;font-size:15px;font-weight:700">&#10003;</span>
+          <span style="font-size:11.5px">VPN positivo</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:6px">
+          <span style="color:#dc3545;font-size:15px;font-weight:700">&#10007;</span>
+          <span style="font-size:11.5px">VPN cero o negativo</span>
+        </div>
+      </div>
+
+      <div style="font-size:11px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:6px">TIR</div>
+      <div style="margin-bottom:10px">
+        <div style="display:flex;align-items:start;gap:6px;margin-bottom:2px">
+          <span style="color:#28a745;font-size:15px;font-weight:700;flex-shrink:0">&#10003;</span>
+          <span style="font-size:11.5px">TIR por encima de tasa libre de riesgo + prima (varía según riesgo percibido por el inversionista)</span>
+        </div>
+        <div style="display:flex;align-items:start;gap:6px">
+          <span style="color:#dc3545;font-size:15px;font-weight:700;flex-shrink:0">&#10007;</span>
+          <span style="font-size:11.5px">TIR por debajo de la tasa libre de riesgo o TIR muy alta resultante de supuestos agresivos</span>
+        </div>
+      </div>
+
+      <div style="font-size:11px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:6px">MOIC</div>
+      <div style="margin-bottom:10px">
+        <div style="display:flex;align-items:start;gap:6px;margin-bottom:2px">
+          <span style="color:#28a745;font-size:15px;font-weight:700;flex-shrink:0">&#10003;</span>
+          <span style="font-size:11.5px">MOIC por encima de 1.5x para periodos cortos y que vaya incrementando conforme pase el tiempo</span>
+        </div>
+        <div style="display:flex;align-items:start;gap:6px">
+          <span style="color:#dc3545;font-size:15px;font-weight:700;flex-shrink:0">&#10007;</span>
+          <span style="font-size:11.5px">Múltiplo igual o por debajo de 1.0x o que sea muy bajo en un periodo largo de tiempo</span>
+        </div>
+      </div>
+
+      <div style="font-size:11px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:6px">Cash-on-Cash</div>
+      <div style="margin-bottom:4px;font-size:11px;color:var(--text-light);font-style:italic">¿La inversión me paga durante el camino o todo depende de la salida?</div>
+      <div style="margin-bottom:10px">
+        <div style="display:flex;align-items:start;gap:6px;margin-bottom:2px">
+          <span style="color:#28a745;font-size:15px;font-weight:700;flex-shrink:0">&#10003;</span>
+          <span style="font-size:11.5px">Flujo corriente sano y positivo (generalmente por encima de la tasa libre de riesgo)</span>
+        </div>
+        <div style="display:flex;align-items:start;gap:6px">
+          <span style="color:#dc3545;font-size:15px;font-weight:700;flex-shrink:0">&#10007;</span>
+          <span style="font-size:11.5px">Flujo totalmente back-ended (que dependa del valor de salida)</span>
+        </div>
+      </div>
+
+      <div style="font-size:11px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:6px">Proyectos Sin Operación</div>
+      <div>
+        <div style="display:flex;align-items:start;gap:6px;margin-bottom:2px">
+          <span style="color:#28a745;font-size:15px;font-weight:700;flex-shrink:0">&#10003;</span>
+          <span style="font-size:11.5px">MOIC por encima de 1.5x</span>
+        </div>
+        <div style="display:flex;align-items:start;gap:6px">
+          <span style="color:#dc3545;font-size:15px;font-weight:700;flex-shrink:0">&#10007;</span>
+          <span style="font-size:11.5px">MOIC por debajo de 1.5x</span>
+        </div>
+      </div>
+
+    </div>
+  </div>`;
+
+  document.getElementById('resultsContent').innerHTML =
+    '<div style="display:grid;grid-template-columns:1fr 340px;gap:24px;align-items:start">' +
+    html + refHtml + '</div>';
   showSection('results');
 }
 
