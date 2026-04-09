@@ -47,9 +47,9 @@ body{
   box-shadow:0 4px 20px rgba(0,0,0,0.15);position:sticky;top:0;z-index:100;
 }
 .header-left{display:flex;align-items:flex-start;gap:20px;flex:1;min-width:320px}
-.header-copy{display:flex;flex-direction:column;gap:10px}
-.header-title{font-size:22px;font-weight:700;letter-spacing:0.5px}
-.header-subtitle{font-size:13px;opacity:0.85;font-weight:300;margin-top:2px}
+.header-copy{display:flex;flex-direction:column;gap:0;padding:0}
+.header-title{font-size:28px;font-weight:700;letter-spacing:0.5px}
+.header-subtitle{font-size:18px;height:33px;opacity:0.85;font-weight:300;margin-top:2px}
 .header-nav{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
 .nav-btn{
   background:rgba(255,255,255,0.12);color:var(--white);
@@ -60,12 +60,15 @@ body{
 }
 .nav-btn:hover,.nav-btn.active{background:rgba(255,255,255,0.25);border-color:rgba(255,255,255,0.4)}
 .nav-btn.active{background:var(--accent);border-color:var(--accent)}
-.header-right{display:flex;flex-direction:column;align-items:flex-end;gap:24px}
-.header-logo{height:55px;object-fit:contain}
+.header-right{
+  display:flex;flex-direction:column;align-items:flex-end;justify-content:space-between;
+  align-self:stretch;
+}
+.header-logo{width:114px;height:57px;object-fit:contain}
 @media(max-width:900px){
   .header{flex-direction:column;align-items:stretch}
   .header-left,.header-right{min-width:100%}
-  .header-right{align-items:flex-start}
+  .header-right{align-items:flex-start;justify-content:flex-start;gap:24px}
 }
 /* MAIN */
 .main-container{flex:1;padding:24px 32px;max-width:1440px;margin:0 auto;width:100%}
@@ -80,7 +83,7 @@ body{
 .card-header svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2}
 .card-body{padding:20px}
 /* INPUTS */
-.input-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
+.input-grid{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(1,1fr);gap:16px}
 .input-group{display:flex;flex-direction:column;gap:5px}
 .input-group label{font-size:11.5px;font-weight:600;color:var(--primary-dark);text-transform:uppercase;letter-spacing:0.3px}
 .input-group input,.input-group select{
@@ -95,6 +98,7 @@ body{
 }
 .input-wrap:focus-within{border-color:var(--accent);box-shadow:0 0 0 3px rgba(229,147,74,0.15)}
 .input-wrap input{border:none;outline:none;flex:1;padding:0 8px;font-size:13px;color:var(--text);background:transparent;min-width:50px;height:100%;font-family:inherit}
+#inHorizonte{border:1px solid rgba(0,0,0,1)}
 .input-wrap .pfx,.input-wrap .sfx{
   padding:0 10px;font-size:11.5px;color:var(--gray-dark);white-space:nowrap;
   background:var(--bg);user-select:none;display:flex;align-items:center;height:100%;
@@ -103,7 +107,7 @@ body{
 .input-wrap .sfx{border-left:1px solid var(--border)}
 /* Inline spinner (arrows + % inside one box) */
 .sp-box{
-  display:flex;align-items:center;border:1.5px solid var(--border);border-radius:6px;
+  display:flex;align-items:center;border:1.5px solid rgba(255,255,255,1);border-radius:6px;
   background:var(--white);overflow:hidden;height:var(--input-h);transition:var(--transition);
 }
 .sp-box:focus-within{border-color:var(--accent);box-shadow:0 0 0 3px rgba(229,147,74,0.15)}
@@ -117,11 +121,17 @@ body{
   border:none;outline:none;text-align:center;width:56px;font-size:13px;color:var(--text);
   background:transparent;-moz-appearance:textfield;height:100%;font-family:inherit;
 }
+#inDescuento,#inOcupacion{border:1px solid rgba(222,226,230,1)}
 .sp-box input::-webkit-outer-spin-button,.sp-box input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
 .sp-box .sp-sfx{
   padding:0 10px;font-size:11.5px;color:var(--gray-dark);background:transparent;
   display:flex;align-items:center;height:100%;user-select:none;
+  border:1px solid rgba(255,255,255,1);
 }
+#inInflacion,#inOpex,#inCapRate{border:1px solid rgba(222,226,230,1)}
+#inDescuento,#inInflacion,#inOpex,#inCapRate{width:310px}
+#inOcupacion{width:244px}
+#inDescuento,#inOcupacion,#inInflacion,#inOpex,#inCapRate{text-align:left}
 /* TOGGLE */
 .toggle-wrap{display:flex;align-items:center;gap:12px;margin-bottom:20px;padding:12px 16px;background:var(--bg);border-radius:8px}
 .toggle-wrap label{font-size:12px;font-weight:600;color:var(--primary-dark)}
@@ -154,7 +164,7 @@ body{
 .table-container{overflow-x:auto}
 table.data-table{width:100%;border-collapse:collapse;font-size:13px}
 table.data-table thead th{
-  background:var(--primary-dark);color:var(--white);
+  background-color:var(--gray-dark);color:var(--white);
   padding:10px 14px;text-align:right;font-weight:600;font-size:11px;
   text-transform:uppercase;letter-spacing:0.3px;position:sticky;top:0;
 }
@@ -202,7 +212,7 @@ table.data-table tbody td.positive{color:#28a745}
 .btn-calc{
   background:linear-gradient(135deg,var(--accent),var(--accent-dark));
   color:var(--white);border:none;padding:12px 32px;border-radius:8px;
-  font-size:14px;font-weight:600;cursor:pointer;transition:var(--transition);
+  font-size:13px;font-weight:500;cursor:pointer;transition:var(--transition);
   box-shadow:0 4px 15px rgba(229,147,74,0.3);margin-top:8px;
   display:inline-flex;align-items:center;gap:8px;font-family:inherit;
 }
@@ -221,8 +231,10 @@ table.data-table tbody td.positive{color:#28a745}
 }
 .btn-secondary:hover{background:var(--primary)}
 .btn-excel{
-  background:linear-gradient(135deg,#217346,#1a5c38);color:var(--white);border:none;
-  padding:10px 20px;border-radius:8px;font-size:13px;font-weight:600;
+  background:linear-gradient(90deg, rgba(81, 108, 125, 1) 0%, rgba(123, 152, 162, 1) 100%);color:var(--white);
+  border:1px solid rgba(244, 246, 247, 1);
+  padding:0 16px;border-radius:8px;font-size:12px;font-weight:600;
+  height:33px;width:164px;
   cursor:pointer;transition:var(--transition);display:inline-flex;align-items:center;gap:8px;
   box-shadow:0 4px 12px rgba(33,115,70,0.3);font-family:inherit;
 }
@@ -365,8 +377,8 @@ table.data-table tbody td.positive{color:#28a745}
           <div class="input-group">
             <label>Tasa de Descuento (WACC)<span class="tooltip-icon" data-tip="Para cálculo de VPN y DCF">?</span></label>
             <div class="sp-box">
-              <button class="sp-btn" onclick="spin('inDescuento',-0.5)">&#9662;</button>
               <input type="number" id="inDescuento" value="10.0" step="0.5" min="0">
+              <button class="sp-btn" onclick="spin('inDescuento',-0.5)">&#9662;</button>
               <button class="sp-btn" onclick="spin('inDescuento',0.5)">&#9652;</button>
               <span class="sp-sfx">%</span>
             </div>
@@ -412,8 +424,8 @@ table.data-table tbody td.positive{color:#28a745}
             <label>Ocupación</label>
             <div style="display:flex;align-items:center;gap:8px">
               <div class="sp-box">
-                <button class="sp-btn" onclick="spin('inOcupacion',-1)">&#9662;</button>
                 <input type="number" id="inOcupacion" value="95.0" step="1" min="0.1" max="100">
+                <button class="sp-btn" onclick="spin('inOcupacion',-1)">&#9662;</button>
                 <button class="sp-btn" onclick="spin('inOcupacion',1)">&#9652;</button>
                 <span class="sp-sfx">%</span>
               </div>
@@ -441,8 +453,8 @@ table.data-table tbody td.positive{color:#28a745}
           <div class="input-group">
             <label>Inflación Anual</label>
             <div class="sp-box">
-              <button class="sp-btn" onclick="spin('inInflacion',-0.5)">&#9662;</button>
               <input type="number" id="inInflacion" value="4.5" step="0.5" min="0.1">
+              <button class="sp-btn" onclick="spin('inInflacion',-0.5)">&#9662;</button>
               <button class="sp-btn" onclick="spin('inInflacion',0.5)">&#9652;</button>
               <span class="sp-sfx">%</span>
             </div>
@@ -450,8 +462,8 @@ table.data-table tbody td.positive{color:#28a745}
           <div class="input-group">
             <label>Opex + G&amp;A (% de Ingresos)</label>
             <div class="sp-box">
-              <button class="sp-btn" onclick="spin('inOpex',-0.5)">&#9662;</button>
               <input type="number" id="inOpex" value="15.0" step="0.5" min="0.1">
+              <button class="sp-btn" onclick="spin('inOpex',-0.5)">&#9662;</button>
               <button class="sp-btn" onclick="spin('inOpex',0.5)">&#9652;</button>
               <span class="sp-sfx">%</span>
             </div>
@@ -466,8 +478,8 @@ table.data-table tbody td.positive{color:#28a745}
           <div class="input-group" id="grpCapRate">
             <label>Cap Rate de Salida<span class="tooltip-icon" data-tip="Valor Venta = NOI Año Final ÷ Cap Rate">?</span></label>
             <div class="sp-box">
-              <button class="sp-btn" onclick="spin('inCapRate',-0.25)">&#9662;</button>
               <input type="number" id="inCapRate" value="8.5" step="0.25" min="7.5" max="12">
+              <button class="sp-btn" onclick="spin('inCapRate',-0.25)">&#9662;</button>
               <button class="sp-btn" onclick="spin('inCapRate',0.25)">&#9652;</button>
               <span class="sp-sfx">%</span>
             </div>
@@ -900,7 +912,7 @@ function calculate() {
           Inversión: ${fmtDate(fechaInv)} &nbsp;|&nbsp; Renta: ${fmtDate(fechaOps)}
         </p>
       </div>
-      <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <div style="display:flex;gap:15px;flex-wrap:nowrap;justify-content:flex-end;align-items:flex-end">
         <button class="btn-excel" onclick="exportXLSX()">
           <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3" stroke-linecap="round" stroke-linejoin="round"/></svg>
           Descargar Excel
