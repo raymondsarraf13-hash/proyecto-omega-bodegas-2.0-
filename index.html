@@ -98,7 +98,7 @@ body{
 }
 .input-wrap:focus-within{border-color:var(--accent);box-shadow:0 0 0 3px rgba(229,147,74,0.15)}
 .input-wrap input{border:none;outline:none;flex:1;padding:0 8px;font-size:13px;color:var(--text);background:transparent;min-width:50px;height:100%;font-family:inherit}
-#inHorizonte{border:1px solid rgba(0,0,0,1)}
+#inOcupacion{width:175px;flex:0 0 175px}
 .input-wrap .pfx,.input-wrap .sfx{
   padding:0 10px;font-size:11.5px;color:var(--gray-dark);white-space:nowrap;
   background:var(--bg);user-select:none;display:flex;align-items:center;height:100%;
@@ -121,17 +121,12 @@ body{
   border:none;outline:none;text-align:center;width:56px;font-size:13px;color:var(--text);
   background:transparent;-moz-appearance:textfield;height:100%;font-family:inherit;
 }
-#inDescuento,#inOcupacion{border:1px solid rgba(222,226,230,1)}
 .sp-box input::-webkit-outer-spin-button,.sp-box input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
 .sp-box .sp-sfx{
   padding:0 10px;font-size:11.5px;color:var(--gray-dark);background:transparent;
   display:flex;align-items:center;height:100%;user-select:none;
   border:1px solid rgba(255,255,255,1);
 }
-#inInflacion,#inOpex,#inCapRate{border:1px solid rgba(222,226,230,1)}
-#inDescuento,#inInflacion,#inOpex,#inCapRate{width:310px}
-#inOcupacion{width:244px}
-#inDescuento,#inOcupacion,#inInflacion,#inOpex,#inCapRate{text-align:left}
 /* TOGGLE */
 .toggle-wrap{display:flex;align-items:center;gap:12px;margin-bottom:20px;padding:12px 16px;background:var(--bg);border-radius:8px}
 .toggle-wrap label{font-size:12px;font-weight:600;color:var(--primary-dark)}
@@ -188,11 +183,11 @@ table.data-table tbody td.positive{color:#28a745}
   max-height:80vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,0.3);
 }
 .modal-header{
-  padding:20px 24px;background:linear-gradient(135deg,var(--primary-dark),var(--primary));
+  height:36px;padding:0 24px;background:linear-gradient(135deg,var(--primary-dark),var(--primary));
   color:var(--white);display:flex;justify-content:space-between;align-items:center;
   border-radius:12px 12px 0 0;
 }
-.modal-header h2{font-size:18px;font-weight:600}
+.modal-header h2{font-size:14px;font-weight:600}
 .modal-close{background:none;border:none;color:var(--white);font-size:24px;cursor:pointer;padding:4px 8px;opacity:0.8;font-family:inherit}
 .modal-close:hover{opacity:1}
 .modal-body{padding:24px}
@@ -301,12 +296,17 @@ table.data-table tbody td.positive{color:#28a745}
     <div class="modal-body">
       <img src="data:image/png;base64,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" alt="RMR Capital" class="modal-logo">
       <h3>1. Descripción</h3>
-      <p>Herramienta de análisis financiero para la valoración de proyectos de renta de bodegas industriales en México. Permite modelar el flujo de inversión desde la adquisición hasta la venta en dos escenarios: con operación (renta activa) y sin operación (activo sin generar ingresos, valuado por DCF).</p>
+      <p>Proyecto Omega — Bodegas es una herramienta de análisis financiero diseñada para evaluar la viabilidad de inversiones en bodegas industriales en México. La calculadora modela el ciclo completo de inversión — desde la adquisición hasta la venta — y genera métricas clave de rentabilidad (TIR, VPN, MOIC, Cash-on-Cash) bajo dos escenarios:</p>
+      <p><strong>Con Operación:</strong> El inversionista adquiere la bodega y genera ingresos por renta durante el horizonte de inversión. El valor de salida se calcula como el NOI del último año dividido entre el Cap Rate de Salida.</p>
+      <p><strong>Sin Operación:</strong> El inversionista adquiere la bodega sin generar ingresos por renta durante el periodo de tenencia (por ejemplo, un activo en desarrollo o desocupado). El valor de salida se determina mediante un Flujo de Caja Descontado (DCF) que proyecta 10 años de NOI post-venta, más un valor terminal, descontados al WACC.</p>
       <h3>2. Instrucciones de Uso</h3>
-      <p><strong>Paso 1:</strong> Complete los supuestos de inversión en la sección "Supuestos".</p>
-      <p><strong>Paso 2:</strong> Seleccione el escenario con el toggle: <strong>Con Operación</strong> (genera NOI por renta) o <strong>Sin Operación</strong> (sin ingresos, exit por DCF).</p>
-      <p><strong>Paso 3:</strong> Haga clic en <strong>"Calcular Proyecto"</strong> y revise los resultados.</p>
-      <p><strong>Nota:</strong> En el escenario Sin Operación, el valor de salida se calcula con un DCF a 10 años de NOI proyectado, descontado al WACC.</p>
+      <p><strong>Paso 1 — Seleccionar escenario.</strong> Utilice el toggle en la parte superior de los Supuestos para elegir entre "Con Operación" y "Sin Operación". Esta selección determina la lógica de cálculo y las tablas de resultados.</p>
+      <p><strong>Paso 2 — Capturar supuestos.</strong> Complete todos los campos de la sección de Supuestos de Inversión. Los campos se agrupan en: General (nombre, horizonte, tasa de descuento), Inversión (monto, fechas), Propiedad (m² rentables, ocupación), Ingresos y Gastos (renta, inflación, opex), y Valoración de Salida (cap rate).</p>
+      <p><strong>Paso 3 — Ocupación variable (opcional).</strong> Si desea proyectar una ocupación diferente para cada año, haga clic en el botón "Por Año" junto al campo de Ocupación. En el escenario Con Operación, los años corresponden al horizonte de inversión; en Sin Operación, corresponden a los 10 años de proyección del DCF.</p>
+      <p><strong>Paso 4 — Calcular.</strong> Haga clic en "Calcular Proyecto". La herramienta generará las métricas de rentabilidad y las tablas de detalle correspondientes al escenario seleccionado.</p>
+      <p><strong>Paso 5 — Interpretar resultados.</strong> Consulte el panel de "Referencias de Interpretación" a la derecha de los resultados para orientarse sobre los rangos de referencia de cada métrica.</p>
+      <p><strong>Paso 6 — Exportar (opcional).</strong> Haga clic en "Descargar Excel" para obtener un archivo .xlsx con el resumen de métricas y el detalle de flujos o del DCF según el escenario.</p>
+      <p><strong>Nota:</strong> El panel de "Referencias de Mercado" en la sección de Supuestos incluye rangos orientativos de WACC, precios de renta y cap rates por tipo de bodega, que pueden servir como punto de partida para calibrar los supuestos.</p>
       <h3>3. Aviso de Privacidad</h3>
       <p style="font-size:12px;color:var(--gray-dark);line-height:1.7">Este documento ha sido preparado por RMR Capital exclusivamente con fines informativos e indicativos. La información, supuestos, proyecciones y resultados aquí presentados no constituyen una oferta, solicitud, recomendación ni asesoría de inversión de ningún tipo. Los valores y rendimientos proyectados se basan en estimaciones y supuestos que pueden no materializarse y no representan una garantía de desempeño futuro. Los resultados reales pueden diferir materialmente de las proyecciones presentadas.</p>
       <p style="font-size:12px;color:var(--gray-dark);line-height:1.7">Este material es estrictamente confidencial y es propiedad exclusiva de RMR Capital. Queda prohibida su reproducción, distribución o divulgación total o parcial a terceros sin la autorización previa y por escrito de RMR Capital. Al acceder a este documento, el receptor acepta mantener la confidencialidad de su contenido y utilizarlo únicamente para los fines autorizados por RMR Capital.</p>
@@ -350,14 +350,14 @@ table.data-table tbody td.positive{color:#28a745}
 
       <!-- TOGGLE -->
       <div class="toggle-wrap">
-        <label>Escenario:</label>
+        <label>Escenarios:</label>
         <span class="toggle-label active" id="lblConOp">Con Operación</span>
         <label class="toggle-switch">
           <input type="checkbox" id="toggleOp" onchange="updateToggle()">
           <span class="toggle-slider"></span>
         </label>
         <span class="toggle-label" id="lblSinOp">Sin Operación</span>
-        <span class="tooltip-icon" data-tip="Sin Operación: sin ingresos por renta; exit valuado por DCF a 10 años">?</span>
+        <span class="tooltip-icon" data-tip="Con Operación = Operar la bodega / Sin Operación = No operar la bodega (solo comprar terreno, construir y vender)">?</span>
       </div>
 
       <!-- General -->
@@ -366,22 +366,20 @@ table.data-table tbody td.positive{color:#28a745}
         <div class="input-grid">
           <div class="input-group">
             <label>Nombre de la Bodega</label>
-            <input type="text" id="inNombre" value="" placeholder="Ej. Bodega Alpha">
+            <input type="text" id="inNombre" value="">
           </div>
           <div class="input-group">
-            <label>Horizonte de Inversión<span class="tooltip-icon" data-tip="Número de años para calcular el Retorno de Inversión">?</span></label>
+            <label>Horizonte de Inversión<span class="tooltip-icon" data-tip="Número de años utilizado para el cálculo de los Retornos de Inversión">?</span></label>
             <div class="input-wrap">
-              <input type="number" id="inHorizonte" value="" min="1" max="50" step="1" placeholder="10">
+              <input type="number" id="inHorizonte" value="" min="1" max="50" step="1">
               <span class="sfx">Años</span>
             </div>
           </div>
           <div class="input-group">
             <label>Tasa de Descuento (WACC)<span class="tooltip-icon" data-tip="Para cálculo de VPN y DCF">?</span></label>
-            <div class="sp-box">
-              <input type="number" id="inDescuento" value="" step="0.5" min="0" placeholder="10.0">
-              <button class="sp-btn" onclick="spin('inDescuento',-0.5)">&#9662;</button>
-              <button class="sp-btn" onclick="spin('inDescuento',0.5)">&#9652;</button>
-              <span class="sp-sfx">%</span>
+            <div class="input-wrap">
+              <input type="number" id="inDescuento" value="" step="0.5" min="0">
+              <span class="sfx">%</span>
             </div>
           </div>
         </div>
@@ -392,10 +390,10 @@ table.data-table tbody td.positive{color:#28a745}
         <div style="font-size:12px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:1px;margin-bottom:12px;padding-bottom:6px;border-bottom:2px solid var(--accent)">Inversión</div>
         <div class="input-grid">
           <div class="input-group">
-            <label>Valor de Inversión</label>
+            <label>Valor de Inversión<span class="tooltip-icon" data-tip="Valor total invertido inicialmente (incluir terreno y construcción, si aplica)">?</span></label>
             <div class="input-wrap">
               <span class="pfx">$</span>
-              <input type="text" id="inInversion" value="" oninput="formatCurrency(this)" placeholder="50,000,000">
+              <input type="text" id="inInversion" value="" oninput="formatCurrency(this)">
               <span class="sfx">MXN</span>
             </div>
           </div>
@@ -417,18 +415,16 @@ table.data-table tbody td.positive{color:#28a745}
           <div class="input-group">
             <label>m² Renta<span class="tooltip-icon" data-tip="Superficie rentable">?</span></label>
             <div class="input-wrap">
-              <input type="text" id="inM2Renta" value="" oninput="formatNumber(this)" placeholder="9,500">
+              <input type="text" id="inM2Renta" value="" oninput="formatNumber(this)">
               <span class="sfx">m²</span>
             </div>
           </div>
           <div class="input-group">
-            <label>Ocupación<span class="tooltip-icon" data-tip="Dar click en Por Año para modificar la ocupación por año">?</span></label>
+            <label>Ocupación<span class="tooltip-icon" data-tip="Número de ocupación uniforme para la proyección, en caso de querer asumir diferentes porcentajes por año, da click en el siguiente botón">?</span></label>
             <div style="display:flex;align-items:center;gap:8px">
-              <div class="sp-box">
-                <input type="number" id="inOcupacion" value="" step="1" min="0.1" max="100" placeholder="95.0">
-                <button class="sp-btn" onclick="spin('inOcupacion',-1)">&#9662;</button>
-                <button class="sp-btn" onclick="spin('inOcupacion',1)">&#9652;</button>
-                <span class="sp-sfx">%</span>
+              <div class="input-wrap">
+                <input type="number" id="inOcupacion" value="" step="1" min="0.1" max="100">
+                <span class="sfx">%</span>
               </div>
               <button class="btn-secondary" onclick="openOccModal()" title="Definir ocupación diferente por año" style="padding:7px 12px;font-size:11px;white-space:nowrap">
                 Por Año
@@ -447,26 +443,22 @@ table.data-table tbody td.positive{color:#28a745}
             <label>Precio Inicial de Renta</label>
             <div class="input-wrap">
               <span class="pfx">$</span>
-              <input type="text" id="inRenta" value="" placeholder="120.0">
+              <input type="text" id="inRenta" value="">
               <span class="sfx">MXN/m²/mes</span>
             </div>
           </div>
           <div class="input-group">
             <label>Inflación Anual<span class="tooltip-icon" data-tip="Crecimiento anual del precio de renta inicial">?</span></label>
-            <div class="sp-box">
-              <input type="number" id="inInflacion" value="" step="0.5" min="0.1" placeholder="4.5">
-              <button class="sp-btn" onclick="spin('inInflacion',-0.5)">&#9662;</button>
-              <button class="sp-btn" onclick="spin('inInflacion',0.5)">&#9652;</button>
-              <span class="sp-sfx">%</span>
+            <div class="input-wrap">
+              <input type="number" id="inInflacion" value="" step="0.5" min="0.1">
+              <span class="sfx">%</span>
             </div>
           </div>
           <div class="input-group">
             <label>Opex + G&amp;A (% de Ingresos)</label>
-            <div class="sp-box">
-              <input type="number" id="inOpex" value="" step="0.5" min="0.1" placeholder="15.0">
-              <button class="sp-btn" onclick="spin('inOpex',-0.5)">&#9662;</button>
-              <button class="sp-btn" onclick="spin('inOpex',0.5)">&#9652;</button>
-              <span class="sp-sfx">%</span>
+            <div class="input-wrap">
+              <input type="number" id="inOpex" value="" step="0.5" min="0.1">
+              <span class="sfx">%</span>
             </div>
           </div>
         </div>
@@ -477,12 +469,10 @@ table.data-table tbody td.positive{color:#28a745}
         <div style="font-size:12px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:1px;margin-bottom:12px;padding-bottom:6px;border-bottom:2px solid var(--accent)">Valoración de Salida</div>
         <div class="input-grid">
           <div class="input-group" id="grpCapRate">
-            <label>Cap Rate de Salida<span class="tooltip-icon" data-tip="Valor Venta = NOI Año Final ÷ Cap Rate">?</span></label>
-            <div class="sp-box">
-              <input type="number" id="inCapRate" value="" step="0.25" min="1" max="15" placeholder="8.5">
-              <button class="sp-btn" onclick="spin('inCapRate',-0.25)">&#9662;</button>
-              <button class="sp-btn" onclick="spin('inCapRate',0.25)">&#9652;</button>
-              <span class="sp-sfx">%</span>
+            <label>Cap Rate de Salida</label>
+            <div class="input-wrap">
+              <input type="number" id="inCapRate" value="" step="0.25" min="1" max="15">
+              <span class="sfx">%</span>
             </div>
           </div>
         </div>
@@ -505,7 +495,7 @@ table.data-table tbody td.positive{color:#28a745}
       Referencias de Mercado
     </div>
     <div class="card-body" style="padding:16px;font-size:11.5px;color:var(--text);line-height:1.7">
-      <p style="margin-bottom:12px;font-size:11px;color:var(--text-light)">A continuación se definen ciertos rangos comúnmente utilizados por inversionistas para valorar este tipo de inversiones:</p>
+      <p style="margin-bottom:12px;font-size:11px;color:var(--text-light)">A continuación se definen ciertos rangos comúnmente utilizados por inversionistas institucionales para valorar activos de bodegas industriales:</p>
 
       <div style="font-size:11px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:6px">Referencia de Tamaño</div>
       <table style="width:100%;font-size:11px;margin-bottom:12px;border-collapse:collapse">
@@ -1176,5 +1166,3 @@ function calculate() {
   document.getElementById('footerDate').textContent = now.getDate() + ' ' + months[now.getMonth()] + ' ' + now.getFullYear();
 })();
 </script>
-</body>
-</html>
